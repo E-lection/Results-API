@@ -1,3 +1,14 @@
 language: python
 python: '2.7'
 script: python manage.py test results
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: AKIAILL4W3RIQMZAFTPQ
+  secret_access_key:
+    secure: 4sjxV4GBYN+xt7daCqEGmfw6gE6nyU596A/ik4qdQk2rE7pa8rcBzNeR9oTSaf9a3GmPAJJE1ArvTgnhNjpcbwRxkRmd45Dm0tCokmdaFwPYzU3UqE71Qel07lwbi7EomUMDFDIsDgUt3X/RtOpyWbolAB+c0QKZ3gcD/zok3vNZTN3EC/yq+IKRpuRq9yK4syCJwErpvjdDPsBSudjKj12iOsCyxZdZmr4AYkDlMl66HhJqXji0LBnopjRS8X2nljWSKmlvRt1D09LnI+gc/Bai1RlpF9Ly2v3P+YCRzDb036TX2+ipAzGZdW9A5hSwOeNXBWBNO1c9jkxcvPatJEdIZMbFehCh63BAwfZTYxIMRTBCZ7T2IMQ2JGtiBMawPqTvf9E/o5c2ik2JWcLGCnsp3E4JJbUOgAp7AvlRJ3wqgE+qv8URXGItz6WWWO7mGN7o+vefo4G+d8laWb0Ne0l/KcJt7rpUs4hXUfVmMuMpwC0HPU5+EaPZ+cYlZI1sS/zAt3TtQ1yKCGnKA+ehxmrgJU/AhWzM/Z2rVwS4MR7eVDYYCHct7xF2Z7HaESJGjR1M/q1g8zj8CWjEELWJ/5eDay3M2GPnsNBjIAJubyFxoKdGPgJ3uwyiyM7/NhRBaRGX6wEzSRMhN/PmyVS6jk0K1IuVfh8A6uyiDgek0AE=
+  region: eu-west-2
+  app: e-lection-results-api
+  env: results-env
+  on:
+    repo: E-lection/Results-API
+  bucket_name: "elasticbeanstalk-eu-west-2-699181153619"
