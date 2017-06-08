@@ -25,8 +25,8 @@ class PostVoteTestCases(TestCase):
         post_data = {
             'constituency': CONSTITUENCY,
             'party': PARTY,
-            'candidate_first_name': CAND_FIRST_NAME,
-            'candidate_last_name': CAND_LAST_NAME
+            'first_name': CAND_FIRST_NAME,
+            'last_name': CAND_LAST_NAME
         }
         url = reverse('results:vote')
 

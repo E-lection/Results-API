@@ -11,11 +11,8 @@ def index(request):
 def vote(request):
     if request.method == 'POST':
         vote_data = json.loads(request.body)
-        if (hasattr(vote_data, 'constituency') and
-                hasattr(vote_data, 'party') and
-                hasattr(vote_data, 'first_name') and
-                hasattr(vote_data, 'last_name')):
 
+        if all (k in vote_data for k in ('constituency', 'party', 'first_name', 'last_name')):
             constituency = vote_data['constituency']
             party = vote_data['party']
             candidate_first_name = vote_data['first_name']
