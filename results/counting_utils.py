@@ -49,8 +49,8 @@ def count_and_package_all_votes():
     results = []
 
     for constituency in constituencies:
-        ((winning_votes, winner), votes, total_votes) =
-            count_all_votes_for_constituency(constituency['constituency'])
+        ((winning_votes, winner), votes, total_votes) = count_all_votes_for_constituency(
+            constituency['constituency'])
         result = {'constituency': constituency['constituency'],
                   'winning_candidate': winner,
                   'winning_votes': winning_votes,
