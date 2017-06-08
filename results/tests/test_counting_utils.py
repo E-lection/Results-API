@@ -22,26 +22,21 @@ CAND_2_VOTES = 7
 CAND_3_VOTES = 2
 CAND_4_VOTES = 4
 
-
-CANDIDATES = [{'first_name': CAND_1_F_NAME,
+CANDIDATE_1 = {'first_name': CAND_1_F_NAME,
                'last_name': CAND_1_L_NAME,
-               'party': PARTY_1},
-              {'first_name': CAND_2_F_NAME,
+               'party': PARTY_1}
+CANDIDATE_2 = {'first_name': CAND_2_F_NAME,
                'last_name': CAND_2_L_NAME,
-               'party': PARTY_2},
-              {'first_name': CAND_3_F_NAME,
+               'party': PARTY_2}
+CANDIDATE_3 = {'first_name': CAND_3_F_NAME,
                'last_name': CAND_3_L_NAME,
-               'party': PARTY_3}]
+               'party': PARTY_3}
 
-CANDIDATES_AND_VOTES = [(CAND_1_VOTES, {'first_name': CAND_1_F_NAME,
-                                        'last_name': CAND_1_L_NAME,
-                                        'party': PARTY_1}),
-                        (CAND_2_VOTES, {'first_name': CAND_2_F_NAME,
-                                        'last_name': CAND_2_L_NAME,
-                                        'party': PARTY_2}),
-                        (CAND_3_VOTES, {'first_name': CAND_3_F_NAME,
-                                        'last_name': CAND_3_L_NAME,
-                                        'party': PARTY_3})]
+CANDIDATES = [CANDIDATE_1, CANDIDATE_2, CANDIDATE_3]
+
+CANDIDATES_AND_VOTES = [ {'votes' : CAND_1_VOTES, 'candidate' : CANDIDATE_1},
+                         {'votes' : CAND_2_VOTES, 'candidate' : CANDIDATE_2},
+                         {'votes' : CAND_3_VOTES, 'candidate' : CANDIDATE_3} ]
 
 
 def create_votes(number, constituency, party, candidate_first_name, candidate_last_name):
