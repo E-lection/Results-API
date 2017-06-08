@@ -36,27 +36,16 @@ CANDIDATE_3 = {'first_name': CAND_3_F_NAME,
                'last_name': CAND_3_L_NAME,
                'party': PARTY_3}
 
-RESULTS_JSON = json.dumps( {'map_data' : [
-                           {'constituency' : CONSTITUENCY,
-                            'winning_candidate' : CANDIDATE_1,
-                            'winning_votes' : CAND_1_VOTES,
-                            'total_votes' : CAND_1_VOTES + CAND_2_VOTES + CAND_3_VOTES,
-                            'votes' : [
-                            { 'candidate' : CANDIDATE_1, 'votes' : CAND_1_VOTES },
-                            { 'candidate' : CANDIDATE_2, 'votes' : CAND_2_VOTES },
-                            { 'candidate' : CANDIDATE_3, 'votes' : CAND_3_VOTES },
-                            ]} ]} )
-
-#
-# CANDIDATES_AND_VOTES = [(CAND_1_VOTES, {'first_name': CAND_1_F_NAME,
-#                                         'last_name': CAND_1_L_NAME,
-#                                         'party': PARTY_1}),
-#                         (CAND_2_VOTES, {'first_name': CAND_2_F_NAME,
-#                                         'last_name': CAND_2_L_NAME,
-#                                         'party': PARTY_2}),
-#                         (CAND_3_VOTES, {'first_name': CAND_3_F_NAME,
-#                                         'last_name': CAND_3_L_NAME,
-#                                         'party': PARTY_3})]
+RESULTS_JSON = {'map_data' : [
+               {'constituency' : CONSTITUENCY,
+                'winning_candidate' : CANDIDATE_1,
+                'winning_votes' : CAND_1_VOTES,
+                'total_votes' : CAND_1_VOTES + CAND_2_VOTES + CAND_3_VOTES,
+                'votes' : [
+                { 'candidate' : CANDIDATE_1, 'votes' : CAND_1_VOTES },
+                { 'candidate' : CANDIDATE_2, 'votes' : CAND_2_VOTES },
+                { 'candidate' : CANDIDATE_3, 'votes' : CAND_3_VOTES },
+                ]} ]}
 
 
 def create_votes(number, constituency, party, candidate_first_name, candidate_last_name):

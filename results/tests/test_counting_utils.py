@@ -1,7 +1,9 @@
+import json
+
 from django.test import TestCase
 
 from ..models import Vote
-from ..counting_utils import get_candidates, count_votes, count_all_votes_for_constituency
+from ..counting_utils import get_candidates, count_votes, count_all_votes_for_constituency, count_and_package_all_votes
 
 CONSTITUENCY = "Richmond Park"
 CONSTITUENCY_2 = "Brigg & Goole"
@@ -31,12 +33,29 @@ CANDIDATE_2 = {'first_name': CAND_2_F_NAME,
 CANDIDATE_3 = {'first_name': CAND_3_F_NAME,
                'last_name': CAND_3_L_NAME,
                'party': PARTY_3}
+CANDIDATE_4 = {'first_name': CAND_4_F_NAME,
+               'last_name': CAND_4_L_NAME,
+               'party': PARTY_4}
 
 CANDIDATES = [CANDIDATE_1, CANDIDATE_2, CANDIDATE_3]
 
 CANDIDATES_AND_VOTES = [ {'votes' : CAND_1_VOTES, 'candidate' : CANDIDATE_1},
                          {'votes' : CAND_2_VOTES, 'candidate' : CANDIDATE_2},
                          {'votes' : CAND_3_VOTES, 'candidate' : CANDIDATE_3} ]
+
+RESULTS_VOTE = [{'constituency' : CONSTITUENCY,
+                 'winning_candidate' : CANDIDATE_1,
+                 'winning_votes' : CAND_1_VOTES,
+                 'total_votes' : CAND_1_VOTES + CAND_2_VOTES + CAND_3_VOTES,
+                 'votes' : CANDIDATES_AND_VOTES},
+
+                {'constituency' : CONSTITUENCY_2,
+                 'winning_candidate' : CANDIDATE_4,
+                 'winning_votes' : CAND_4_VOTES,
+                 'total_votes' : CAND_4_VOTES,
+                 'votes' : [
+                 { 'votes' : CAND_4_VOTES, 'candidate' : CANDIDATE_4 }]}]
+
 
 
 def create_votes(number, constituency, party, candidate_first_name, candidate_last_name):
@@ -76,3 +95,8 @@ class CountingUtilsTests(TestCase):
         self.assertEqual(winner, (CAND_1_VOTES, CANDIDATES[0]))
         self.assertEqual(votes, CANDIDATES_AND_VOTES)
         self.assertEqual(total_votes, CAND_1_VOTES + CAND_2_VOTES + CAND_3_VOTES)
+
+    def test_count_and_package_all_votes(self):
+        results = count_and_package_all_votes()
+
+        self.assertEqual(RESULTS_VOTE, results)
