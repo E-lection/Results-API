@@ -35,16 +35,16 @@ CANDIDATE_3 = {'first_name': CAND_3_F_NAME,
                'last_name': CAND_3_L_NAME,
                'party': PARTY_3}
 
-RESULTS_JSON = {'map_data' : [
-               {'constituency' : CONSTITUENCY,
-                'winning_candidate' : CANDIDATE_1,
-                'winning_votes' : CAND_1_VOTES,
-                'total_votes' : CAND_1_VOTES + CAND_2_VOTES + CAND_3_VOTES,
-                'votes' : [
-                { 'candidate' : CANDIDATE_1, 'votes' : CAND_1_VOTES },
-                { 'candidate' : CANDIDATE_2, 'votes' : CAND_2_VOTES },
-                { 'candidate' : CANDIDATE_3, 'votes' : CAND_3_VOTES },
-                ]} ]}
+RESULTS_JSON = {'map_data': [
+               {'constituency': CONSTITUENCY,
+                'winning_candidate': CANDIDATE_1,
+                'winning_votes': CAND_1_VOTES,
+                'total_votes': CAND_1_VOTES + CAND_2_VOTES + CAND_3_VOTES,
+                'votes': [
+                    {'candidate': CANDIDATE_1, 'votes': CAND_1_VOTES},
+                    {'candidate': CANDIDATE_2, 'votes': CAND_2_VOTES},
+                    {'candidate': CANDIDATE_3, 'votes': CAND_3_VOTES},
+                ]}]}
 
 
 def create_votes(number, constituency, party, candidate_first_name, candidate_last_name):
@@ -53,6 +53,7 @@ def create_votes(number, constituency, party, candidate_first_name, candidate_la
                             party=party,
                             candidate_first_name=candidate_first_name,
                             candidate_last_name=candidate_last_name)
+
 
 class PostVoteTestCases(TestCase):
 
@@ -85,6 +86,7 @@ class PostVoteTestCases(TestCase):
         self.assertEqual(vote.party, PARTY)
         self.assertEqual(vote.candidate_first_name, CAND_FIRST_NAME)
         self.assertEqual(vote.candidate_last_name, CAND_LAST_NAME)
+
 
 class OutcomeMapDataTests(TestCase):
 

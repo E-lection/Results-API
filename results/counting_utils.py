@@ -36,7 +36,7 @@ def count_all_votes_for_constituency(constituency):
     for candidate in candidates:
         votes = count_votes(constituency, candidate)
         total_votes += votes
-        results.append({'votes' : votes, 'candidate' : candidate})
+        results.append({'votes': votes, 'candidate': candidate})
         if votes > winning_votes:
             winning_votes = votes
             winner = candidate
@@ -49,12 +49,13 @@ def count_and_package_all_votes():
     results = []
 
     for constituency in constituencies:
-        ((winning_votes, winner), votes, total_votes) = count_all_votes_for_constituency(constituency['constituency'])
-        result = {'constituency' : constituency['constituency'],
-                  'winning_candidate' : winner,
-                  'winning_votes' : winning_votes,
-                  'total_votes' : total_votes,
-                  'votes' : votes}
+        ((winning_votes, winner), votes, total_votes) =
+            count_all_votes_for_constituency(constituency['constituency'])
+        result = {'constituency': constituency['constituency'],
+                  'winning_candidate': winner,
+                  'winning_votes': winning_votes,
+                  'total_votes': total_votes,
+                  'votes': votes}
         results.append(result)
 
     return results
