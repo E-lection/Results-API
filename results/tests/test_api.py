@@ -12,7 +12,6 @@ CAND_LAST_NAME = "May"
 
 RESPONSE_OK = 200
 
-CONSTITUENCY = "Richmond Park"
 PARTY_1 = "Labour"
 PARTY_2 = "Conservatives"
 PARTY_3 = "UKIP"
