@@ -1,11 +1,13 @@
 import json
 from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import Vote
 
 def index(request):
     return HttpResponse('Results API is online')
 
+@csrf_exempt
 def vote(request):
     if request.method == 'POST':
         vote_data = json.loads(request.body)
