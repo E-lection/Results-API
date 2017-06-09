@@ -3,6 +3,8 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Vote
+from .counting_utils import count_and_package_all_votes
+
 
 def index(request):
     return HttpResponse('Results API is online')
@@ -27,3 +29,8 @@ def vote(request):
                 return JsonResponse({'success': True})
 
     return JsonResponse({'success': False})
+
+
+def outcome(request):
+    votes = count_and_package_all_votes()
+    return JsonResponse({'map_data': votes})
