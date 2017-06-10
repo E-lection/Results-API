@@ -10,7 +10,7 @@ def get_candidates(constituency):
         constituency=constituency).values('party').distinct()
 
     for party in parties:
-        candid = Vote.objects.filter(party=party['party'])
+        candid = Vote.objects.filter(party=party['party']).filter(constituency=constituency)
         candidate = {'first_name': candid[0].candidate_first_name,
                      'last_name': candid[0].candidate_last_name,
                      'party': party['party']}
