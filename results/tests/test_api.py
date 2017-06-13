@@ -62,14 +62,17 @@ class PostVoteTestCases(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, RESPONSE_OK)
-        self.assertJSONEqual(response.content, {'success': False})
+        self.assertJSONEqual(response.content, {'success': False,
+                                                'error' : 'Missing input data'})
 
     def test_post_vote_adds_vote(self):
         post_data = {
             'constituency': CONSTITUENCY,
             'party': PARTY,
             'first_name': CAND_FIRST_NAME,
-            'last_name': CAND_LAST_NAME
+            'last_name': CAND_LAST_NAME,
+            'pin_code' : 123456,
+            'station_id' : 1
         }
         url = reverse('results:vote')
 
@@ -78,7 +81,8 @@ class PostVoteTestCases(TestCase):
                                     content_type='application/json')
 
         self.assertEqual(response.status_code, RESPONSE_OK)
-        self.assertJSONEqual(response.content, {'success': True})
+        self.assertJSONEqual(response.content, {'success': True,
+                                                'error' : None })
 
         vote = Vote.objects.get(constituency=CONSTITUENCY)
         self.assertIsNotNone(vote)
