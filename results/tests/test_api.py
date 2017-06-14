@@ -87,32 +87,6 @@ class PostVoteTestCases(TestCase):
         self.assertJSONEqual(response.content, {'success': False,
                                                 'error' : 'Missing input data'})
 
-    def test_post_vote_adds_vote(self):
-        post_data = {
-            'constituency': CONSTITUENCY,
-            'party': PARTY,
-            'first_name': CAND_FIRST_NAME,
-            'last_name': CAND_LAST_NAME,
-            'pin_code' : 123456,
-            'station_id' : 1
-        }
-        url = reverse('results:vote')
-
-        response = self.client.post(url,
-                                    json.dumps(post_data),
-                                    content_type='application/json')
-
-        self.assertEqual(response.status_code, RESPONSE_OK)
-        self.assertJSONEqual(response.content, {'success': True,
-                                                'error' : None })
-
-        vote = Vote.objects.get(constituency=CONSTITUENCY)
-        self.assertIsNotNone(vote)
-        self.assertEqual(vote.constituency, CONSTITUENCY)
-        self.assertEqual(vote.party, PARTY)
-        self.assertEqual(vote.candidate_first_name, CAND_FIRST_NAME)
-        self.assertEqual(vote.candidate_last_name, CAND_LAST_NAME)
-
 
 class OutcomeMapDataTests(TestCase):
 

@@ -96,7 +96,7 @@ class CountingUtilsTests(TestCase):
         self.assertEqual(votes, CANDIDATES_AND_VOTES)
         self.assertEqual(total_votes, CAND_1_VOTES + CAND_2_VOTES + CAND_3_VOTES)
 
-    def test_count_and_package_all_votes(self):
-        results = count_and_package_all_votes()
+    def test_count_and_package_all_votes_returns_expected_map_data(self):
+        map_data, overall_data = count_and_package_all_votes()
 
-        self.assertEqual(RESULTS_VOTE, results)
+        self.assertEqual(RESULTS_VOTE, map_data)
