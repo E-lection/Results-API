@@ -46,7 +46,11 @@ def count_all_votes_for_constituency(constituency):
 
 def count_and_package_all_votes():
     constituencies = Vote.objects.values('constituency').distinct()
-    results = []
+    map_data = []
+    overall_data = {
+        'votes_counted': 0,
+        'parties': [],
+    }
 
     for constituency in constituencies:
         ((winning_votes, winner), votes, total_votes) = count_all_votes_for_constituency(
@@ -56,6 +60,30 @@ def count_and_package_all_votes():
                   'winning_votes': winning_votes,
                   'total_votes': total_votes,
                   'votes': votes}
-        results.append(result)
+        map_data.append(result)
 
-    return results
+        overall_data['votes_counted'] += total_votes
+
+        for candidate_votes in votes:
+            party_name = candidate_votes['candidate']['party']
+            if not any(d['party'] == party_name for d in overall_data['parties']):
+                party = {
+                    'party': party_name,
+                    'seats': 0,
+                    'votes': 0,
+                    'vote_share': 0
+                }
+                overall_data['parties'].append(party)
+
+            party_data = filter(lambda party: party['party'] == party_name, overall_data['parties'])[0]
+            if winner['party'] == party_name:
+                party_data['seats'] += 1
+            party_data['votes'] += candidate_votes['votes']
+
+    for party in overall_data['parties']:
+        total_votes = overall_data['votes_counted']
+
+        party_votes_share = (float(party['votes']) / float(total_votes)) * 100
+        party['vote_share'] = party_votes_share
+
+    return (map_data, overall_data)
