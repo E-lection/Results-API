@@ -24,6 +24,7 @@ CAND_3_L_NAME = "Nuttall"
 CAND_1_VOTES = 12
 CAND_2_VOTES = 7
 CAND_3_VOTES = 2
+TOT_VOTES = CAND_1_VOTES + CAND_2_VOTES + CAND_3_VOTES
 
 CANDIDATE_1 = {'first_name': CAND_1_F_NAME,
                'last_name': CAND_1_L_NAME,
@@ -35,6 +36,21 @@ CANDIDATE_3 = {'first_name': CAND_3_F_NAME,
                'last_name': CAND_3_L_NAME,
                'party': PARTY_3}
 
+PARTY_DATA_1 = {'party': PARTY_1,
+                'votes': CAND_1_VOTES,
+                'vote_share': (float(CAND_1_VOTES) / TOT_VOTES) * 100,
+                'seats': 1}
+
+PARTY_DATA_2 = {'party': PARTY_2,
+                'votes': CAND_2_VOTES,
+                'vote_share': (float(CAND_2_VOTES) / TOT_VOTES) * 100,
+                'seats': 0}
+
+PARTY_DATA_3 = {'party': PARTY_3,
+                'votes': CAND_3_VOTES,
+                'vote_share': (float(CAND_3_VOTES) / TOT_VOTES) * 100,
+                'seats': 0}
+
 RESULTS_JSON = {'map_data': [
                {'constituency': CONSTITUENCY,
                 'winning_candidate': CANDIDATE_1,
@@ -44,7 +60,13 @@ RESULTS_JSON = {'map_data': [
                     {'candidate': CANDIDATE_1, 'votes': CAND_1_VOTES},
                     {'candidate': CANDIDATE_2, 'votes': CAND_2_VOTES},
                     {'candidate': CANDIDATE_3, 'votes': CAND_3_VOTES},
-                ]}]}
+                ]}],
+                'overall_data': {
+                    'votes_counted': CAND_1_VOTES + CAND_2_VOTES + CAND_3_VOTES,
+                    'parties': [
+                        PARTY_DATA_1, PARTY_DATA_2, PARTY_DATA_3
+                    ]
+                }}
 
 
 def create_votes(number, constituency, party, candidate_first_name, candidate_last_name):

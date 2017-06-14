@@ -70,5 +70,5 @@ def delete_votes(request):
 
 
 def outcome(request):
-    votes = count_and_package_all_votes()
-    return JsonResponse({'map_data': votes})
+    map_data, overall_data = count_and_package_all_votes()
+    return JsonResponse({'map_data': map_data, 'overall_data': overall_data})
