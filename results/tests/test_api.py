@@ -11,6 +11,7 @@ CAND_FIRST_NAME = "Theresa"
 CAND_LAST_NAME = "May"
 
 RESPONSE_OK = 200
+RESPONSE_UNAUTHORIZED = 401
 
 PARTY_1 = "Labour"
 PARTY_2 = "Conservatives"
@@ -83,9 +84,7 @@ class PostVoteTestCases(TestCase):
         url = reverse('results:vote')
         response = self.client.get(url)
 
-        self.assertEqual(response.status_code, RESPONSE_OK)
-        self.assertJSONEqual(response.content, {'success': False,
-                                                'error' : 'Missing input data'})
+        self.assertEqual(response.status_code, RESPONSE_UNAUTHORIZED)
 
 
 class OutcomeMapDataTests(TestCase):

@@ -5,11 +5,13 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Vote
 from .counting_utils import count_and_package_all_votes
 from .api_utils import verify_pin_and_make_ineligible
+from .api_key_verification import verify, has_vote_permissions
 
 def index(request):
     return HttpResponse('Results API is online')
 
 @csrf_exempt
+@verify(lambda: has_vote_permissions)
 def vote(request):
     if request.method == 'POST':
         vote_data = json.loads(request.body)
